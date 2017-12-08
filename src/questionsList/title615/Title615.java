@@ -79,20 +79,35 @@ public class Title615 {
         return true;
     }
     
-    public void iterationDfs(int[] cirleFlag,int index,HashMap<Integer,Stack<Integer>> map,Stack<Integer> queue) {
+    public void iterationDfs(int[] cirleFlag,int index,HashMap<Integer,Stack<Integer>> map,Stack<Integer> queue,Boolean flag) {
     	if(cirleFlag[index] == 0) {
     		Stack<Integer> behindElement = map.get(index);
     		if(behindElement  == null || behindElement.isEmpty()) {
     			cirleFlag[index] = 1;
-    			if(queue.empty()) {
-    				return;
-    			}else {
+    			while(!queue.empty()) {
     				index = queue.pop();
+    				Stack<Integer> nextElement = map.get(index);
+    				while(behindElement  != null || !behindElement.empty()) {
+    					queue.push(index);
+    					index = behindElement.pop();
+    				}
     			}
     		}else {
     			queue.push(index);
-    			
+    			cirleFlag[index] = -1;
+    			index = behindElement.pop();
     		}
+    	}
+    	if(cirleFlag[index] == 1) {
+    		if(queue.empty()) {
+				return;
+			}else {
+				index = queue.pop();
+				Stack<Integer> behindElement = map.get(index);
+			}
+    	}
+    	if(cirleFlag[index] == -1) {
+    		flag = false;
     	}
     }
     
@@ -163,6 +178,22 @@ public class Title615 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("test");
+		HashMap<Integer,Stack<Integer>> map = new HashMap<>();
+		Stack<Integer> stack = new Stack<>();
+		stack.push(1);
+		map.put(1, stack);
+		stack.push(2);
+		Stack<Integer> stack2 = new Stack<>();
+		stack2.push(3);
+		System.out.println("stack"+stack.toString());
+		System.out.println("stack2"+stack2.toString());
+		System.out.println("map.get(1)"+map.get(1).toString());
+		int i = stack.pop();
+		stack2.push(i);
+		i = stack.pop();
+		System.out.println("stack"+stack.toString());
+		System.out.println("stack2"+stack2.toString());
+		System.out.println(i);
 	}
 
 }
