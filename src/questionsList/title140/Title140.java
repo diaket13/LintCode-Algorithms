@@ -51,7 +51,7 @@ public class Title140 {
     
     public static void main(String[] args) {
     	System.out.println(Integer.MIN_VALUE);
-    	int n=4;
+    	int n=4,k=3,l=n+k;
     	String a= "null";
     	String b= "\"null\"";
     	System.out.println(2 % 3);
