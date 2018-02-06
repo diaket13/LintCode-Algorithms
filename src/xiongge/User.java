@@ -10,6 +10,6 @@ public class User {
 	/**
 	 * 交易台集合
 	 */
-	private HashSet<Post> postList;
+	private HashSet<TradeTable> postList;
 	
 }

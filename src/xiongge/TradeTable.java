@@ -2,7 +2,7 @@ package xiongge;
 
 import java.util.HashSet;
 
-public class Post {
+public class TradeTable {
 	/**
 	 * 基本信息
 	 */
