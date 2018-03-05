@@ -1,4 +1,4 @@
-package thread.baseLocal;
+package thread.base.local;
 
 public class BaseLocal {
 	private ThreadLocal<Integer> idLocal = new ThreadLocal<Integer>() {

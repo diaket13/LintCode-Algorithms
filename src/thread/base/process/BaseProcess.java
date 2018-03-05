@@ -1,4 +1,4 @@
-package thread.baseProcess;
+package thread.base.process;
 
 import java.io.IOException;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package thread.baseVolatile;
+package thread.base.volatiles;
 
 public class Singleton {
 	private volatile Singleton instance = null;

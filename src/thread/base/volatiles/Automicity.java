@@ -1,4 +1,4 @@
-package thread.baseVolatile;
+package thread.base.volatiles;
 
 public class Automicity {
 	public static void main(String[] args) {

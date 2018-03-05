@@ -1,4 +1,4 @@
-package thread.synThread;
+package thread.syn;
 
 import java.util.Iterator;
 import java.util.Vector;

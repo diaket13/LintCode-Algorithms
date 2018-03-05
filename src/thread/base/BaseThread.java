@@ -1,4 +1,4 @@
-package thread.baseThread;
+package thread.base;
 
 public class BaseThread {
 	public static void main(String[] args) {
