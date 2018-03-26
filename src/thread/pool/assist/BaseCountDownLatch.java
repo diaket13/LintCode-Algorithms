@@ -10,27 +10,47 @@ public class BaseCountDownLatch {
 		final CountDownLatch cdl1 = new CountDownLatch(15);
 		
 		ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 200, TimeUnit.MILLISECONDS,
-				new ArrayBlockingQueue<Runnable>(5));
-		
-		for(int i=0;i<15;i++) {
-			Latch task = new Latch(cdl1);
-			executor.execute(task);
-			System.out.println("线程池中线程数目："+executor.getPoolSize()+"，队列中等待执行的任务数目："+
+				new ArrayBlockingQueue<>(5));
+
+        for(int i=0;i<15;i++) {
+            Latch task = new Latch(cdl1);
+            executor.execute(task);
+            System.out.println("线程池中线程数目："+executor.getPoolSize()+"，队列中等待执行的任务数目："+
 		             executor.getQueue().size()+"，已执行玩别的任务数目："+executor.getCompletedTaskCount());
-		}
-	}
+        }
+        new Thread(() -> {
+            try {
+                System.out.println("等待计数完成");
+                cdl1.await(100,TimeUnit.MILLISECONDS);
+                System.out.println("不等了" + cdl1.getCount());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).run();
+
+        final Thread thread = new Thread(() -> {
+            try {
+                    System.out.println("等待计数完成");
+                    cdl1.await();
+                    System.out.println("计数完成" + cdl1.getCount());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        });
+        thread.run();
+
+    }
 	
 
 }
 class Latch implements Runnable{
-	final CountDownLatch cdl;
+	private final CountDownLatch cdl;
 	
-	public Latch(CountDownLatch cdl) {
+	Latch(CountDownLatch cdl) {
 		this.cdl = cdl;
 	}
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		System.out.println(Thread.currentThread().getName()+" ==> 执行");
 		try {
 			Thread.sleep(1000);
