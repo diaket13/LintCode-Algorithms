@@ -1,5 +1,6 @@
 package thread.syn;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -26,7 +27,7 @@ public class TwoThread {
 }
 
 class Data {
-	private Vector<Integer> list = new Vector<>();
+	private ArrayList<Integer> list = new ArrayList<>();
 
 	public void insert(Thread thread) {
 		synchronized (this) {

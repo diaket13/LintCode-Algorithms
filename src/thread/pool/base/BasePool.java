@@ -32,7 +32,7 @@ public class BasePool {
 }
 
 class TheTask extends Thread{
-	private int taskNum;
+	private final int taskNum;
 	
 	public TheTask(int i){
 		this.taskNum = i;
